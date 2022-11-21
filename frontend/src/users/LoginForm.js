@@ -24,12 +24,13 @@ function LoginForm() {
             },
             body: JSON.stringify(credentials)
         })
-    
+
         const data = await response.json()
-    
+
         if (response.status === 200) {
             setCurrentUser(data.user)
-            history.push('/')
+            localStorage.setItem('token', data.token)
+            history.push(`/`)
         } else {
             setErrorMessage(data.message)
         }
